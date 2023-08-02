@@ -18,9 +18,11 @@ package com.example.android.eggtimernotifications.ui
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.ContentValues.TAG
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +32,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.android.eggtimernotifications.R
 import com.example.android.eggtimernotifications.databinding.FragmentEggTimerBinding
+import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.messaging.FirebaseMessaging
 
 class EggTimerFragment : Fragment() {
@@ -55,6 +58,18 @@ class EggTimerFragment : Fragment() {
             getString(R.string.egg_notification_channel_id),
             getString(R.string.egg_notification_channel_name)
         )
+
+//        val token = FirebaseInstanceId.getInstance().getToken()
+//        Log.d(TAG, "FCM token: ${token}")
+
+        // TODO: Step 3.1 create a new channel for FCM
+        createChannel(
+            getString(R.string.breakfast_notification_channel_id),
+            getString(R.string.breakfast_notification_channel_name)
+        )
+
+
+        // TODO: Step 3.4 call subscribe topics on start
 
         return binding.root
     }
